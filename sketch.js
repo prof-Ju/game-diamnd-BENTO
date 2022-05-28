@@ -14,18 +14,17 @@ var gameOverImg,restartImg
 
 
 function preload(){
-  trex_running = loadAnimation("diamond parado.png","diamond andando movimento 1.png","diamond andando movimento 2.png");
-  //trex_rip = loadAnimation("trex_rip.png");
+  diamond_running = loadAnimation("assets/diamondparado.png","assets/diamondandandomovimento1.png","assets/diamondandandomovimento2.png");
   
-  groundImage = loadImage("ground2.png");
+  groundImage = loadImage("assets/ground2.png");
   
   
-  inimigo1 = loadImage("inimigo parado.png");
-  inimigo2 = loadImage("inimigo 3.png");
-  inimigo3 = loadImage("inimigo parado ].png");
+  inimigo1 = loadImage("assets/inimigoparado.png");
+  inimigo2 = loadImage("assets/inimigo2.png");
+  inimigo3 = loadImage("assets/inimigoparado.png");
   
-   restartImg = loadImage("restart.png")
-  gameOverImg = loadImage("gameOver.png")
+  restartImg = loadImage("assets/restart.png")
+  gameOverImg = loadImage("assets/gameOver.png")
   
 
 }
@@ -34,9 +33,11 @@ function setup() {
   createCanvas(600, 200);
   
   diamond = createSprite(50,180,20,50);
-  diamond.addAnimation("andando", trex_running);
-  diamond.addAnimation("collided" ,trex_rip);
+  diamond.addAnimation("andando", diamond_running);
+  //diamond.addAnimation("collided" ,trex_rip);
   diamond.scale = 0.5;
+  diamond.debug = true
+  diamond.setCollider("circle", 0,0,50)
   
   ground = createSprite(200,180,400,20);
   ground.addImage("ground",groundImage);
@@ -99,7 +100,7 @@ function draw() {
   
   
     //gerar obstáculos no solo
-    spawnInimigos();
+    spawninimigo();
     
     if(inimigosGroup.isTouching(diamond)){
        // gameState = END;
@@ -139,13 +140,13 @@ function spawninimigo(){
    inimigo.velocityX = -6;
    
     //gerar obstáculos aleatórios
-    var rand = Math.round(random(1,6));
+    var rand = Math.round(random(1,3));
     switch(rand) {
       case 1: inimigo.addImage(inimigo1);
               break;
-      case 2: inimgo.addImage(inimigo2);
+      case 2: inimigo.addImage(inimigo2);
               break;
-      case 3: inimgo.addImage(inimigo3);
+      case 3: inimigo.addImage(inimigo3);
               break;
       default: break;
     }
@@ -160,6 +161,22 @@ function spawninimigo(){
 
 
 
+/*                 notas da prof
+Oii Bento, tudo bem?
 
+ Seu jogo está ficando muito bom, eu consertei TODOS os bugs que encontrei,
+ mas ainda falta fazer bastante coisa no jogo, vi que você fez muita coisa na base do Trex
+ e ta tudo bem!! mas tente evitar de usar o copia e cola demais ok? A maioria dos bugs
+ que encontrei era relacionado a "sintaxe", ou seja, tente prestar um pouco mais de atenção
+ quando for digitar ok? Você já esta no caminho certo, continue assim!
+
+
+ OBS: Na hora de criar arquivos de imagem evite usar tracinhos e espaços ok? 
+ se underline_para_separar_as_palavras, o pc fica bem mais feliz assim! :D
+
+ Até a proxima aula.
+
+ HAAAAAAPY HACKING!
+*/
 
 
